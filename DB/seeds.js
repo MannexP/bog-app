@@ -1,5 +1,5 @@
 require('dotenv').config()
-const mongoose = require('./connection')
+const mongoose = require('./connections')
 mongoose.connect(process.env.MONGODB_URI)
 
 const Creature = require('../models/Creature')
@@ -22,17 +22,7 @@ Creature.deleteMany({})
     .then(() => yoda.save())
     .then(() => darth.save())
     .then(() => luke.save())
-    .then(() => console.log("Database seeded success"))
+    .then(() => console.log("Database seeded successfully"))
     .then(() => mongoose.connection.close())
 
 
-const saved = async () => {
-  await Creature.remove()
-  const luke = new Creature({name: 'Luke', description: 'Jedi'})
-  await luke.save()
-  const darth = new Creature({name: 'Darth Vader', description: 'Father of Luke'})
-  await darth.save()
-  db.close()
-}
-
-saved()

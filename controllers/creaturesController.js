@@ -6,14 +6,13 @@ const creaturesController = {
             .then((creatures) => {
                 res.send(creatures)
             })
-        "HELLO FROM INDEX"
+
      },
     show: (req, res) => {
         Creature.findById(req.params.creatureId)
             .then((creature) => {
                 res.send(creature)
             })
-        "HELLO FROM SHOW"
     },
     update: (req, res) => {
         Creature.findByIdAndUpdate(req.params.creatureId, req.body)
