@@ -1,13 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require('./connection')
 const { Creature } = require('./schema')
 
-// using Promises
-Creature.remove().then(() => {
+// using async/await
+const saved = async () => {
+  await Creature.remove()
   const luke = new Creature({name: 'Luke', description: 'Jedi'})
-  return luke.save()
-}).then(() => {
+  await luke.save()
   const darth = new Creature({name: 'Darth Vader', description: 'Father of Luke'})
-  return darth.save()
-}).then(() => {
+  await darth.save()
   db.close()
-})
+}
+
+saved()
